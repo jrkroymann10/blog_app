@@ -14,8 +14,10 @@
 </p>
 <p><%= @article.body %> </p>
 
-<%= link_to "edit", edit_article_path(@article) %>
-<%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "do you really want to delete the article?"} %>
+<% if logged_in? %>
+  <%= link_to "edit", edit_article_path(@article) %>
+  <%= link_to "delete", article_path(@article), method: :delete, data: {confirm: "do you really want to delete the article?"} %>
+<% end %>
 
 <h3> Comments (<%= @article.comments.size %>) </h3>
 <%= render partial: 'articles/comment', collection: @article.comments %>
